@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8BE7F88C-25FE-493D-95E4-9CB1DC6A2EC9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KB.Module1</RootNamespace>
+    <AssemblyName>KB.Module1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\FOUNDERPCB_ANALYSISBLL.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DAL\FOUNDERPCB_ANALYSISDAL.cs" />
+    <Compile Include="Frm_Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Analysis.Designer.cs">
+      <DependentUpon>Frm_Analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kaimodan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kaimodan.Designer.cs">
+      <DependentUpon>kaimodan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelARequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelARequest.Designer.cs">
+      <DependentUpon>ModelARequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelRARequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelRARequest.Designer.cs">
+      <DependentUpon>ModelRARequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelRBRHandle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelRBRHandle.Designer.cs">
+      <DependentUpon>ModelRBRHandle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelTest.Designer.cs">
+      <DependentUpon>ModelTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FOUNDERPCB_ANALYSIS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Frm_Analysis.resx">
+      <DependentUpon>Frm_Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kaimodan.resx">
+      <DependentUpon>kaimodan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelARequest.resx">
+      <DependentUpon>ModelARequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelRARequest.resx">
+      <DependentUpon>ModelRARequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelRBRHandle.resx">
+      <DependentUpon>ModelRBRHandle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelTest.resx">
+      <DependentUpon>ModelTest.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KB.Lib\KB.Lib.csproj">
+      <Project>{7e1cda6b-581e-4afa-adb6-0457fbc989c7}</Project>
+      <Name>KB.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KB.Module\KB.Module.csproj">
+      <Project>{1ff98fb6-cafe-494d-8a39-a5f4c76fc492}</Project>
+      <Name>KB.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

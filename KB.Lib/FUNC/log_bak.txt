@@ -1,0 +1,251 @@
+﻿using System;
+using System.Xml;
+using System.Data;
+using System.Collections;
+using System.Configuration;
+using System.Web; 
+using System.IO; 
+using System.Text;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+/* 获取XML文件信息 */
+namespace KB.FUNC /* 命名空间 */
+{
+    #region 注意说明
+    /*
+    服务器需要设定权限才能使用 EventLog 类
+     
+    Asp.Net默认情况下并没有写Windows日志的权限﹐而设置这个﹐我们就需要修改注册表了。 
+
+　　“开始”->”运行”->”RegEdit”直至
+
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog
+
+　　“使用权限”->安全性”新增”﹐加入Asp.net账号﹐并赋于读取的权限->保存退出注册表。
+    */
+    #endregion
+    public class log 
+    {
+        #region Log
+        public log()
+        { }
+        #endregion
+
+        #region 显示 PrintInfo
+        public static void PrintInfo(Exception e1)
+        {
+            log.Error("FID=" + GlobalVal.UserInfo.FactoryID.ToString() + "，UserName=" + GlobalVal.UserInfo.LoginName + "，" + ";" + e1.Message, e1);
+            MessageBox.Show(e1.Message.Replace("'", "").Replace("\r\n", ""), "系统出错！"); 
+        } 
+        #endregion
+
+        #region 记录 RecordInfo
+        public static void RecordInfo(Exception e1)
+        {
+            log.Error("FID=" + GlobalVal.UserInfo.FactoryID.ToString() + "，UserName=" + GlobalVal.UserInfo.LoginName + "，" + ";" + e1.Message, e1);
+        }
+        #endregion
+
+        #region WriteFile
+        private static void WriteFile(string s_msg, string s_mode, Exception ex)
+        {
+            string s_proc_name1 = "", s_proc_name2 = "", s_proc_name3 = "", s_proc_name4 = "";
+            string s_proc_dll_name1 = "", s_proc_dll_name2 = "", s_proc_dll_name3 = "", s_proc_dll_name4 = "";
+            string s_user = "";
+            //string s_curr_proc_name = "";
+            //string s_curr_table_id = "0", s_curr_table_do = "0";
+            string s_write = "";
+            //string s_accounts = "";
+
+            //EventLog eventLog = new EventLog("中央销售", ".");
+            try
+            {
+                if (s_msg.IndexOf("COMMIT TRANSACTION 请求没有对应的 BEGIN TRANSACTION") >= 0) return;
+                if (s_msg.IndexOf("SQL 语法：COMMIT TRAN") > 0) return;
+
+                s_proc_dll_name1 = (new StackTrace()).GetFrame(2).GetMethod().ReflectedType.FullName;//类名
+                s_proc_name1     = (new StackTrace()).GetFrame(2).GetMethod().Name;//方法
+                s_proc_dll_name2 = (new StackTrace()).GetFrame(3).GetMethod().ReflectedType.FullName;//类名
+                s_proc_name2     = (new StackTrace()).GetFrame(3).GetMethod().Name;//方法
+                s_proc_dll_name3 = (new StackTrace()).GetFrame(4).GetMethod().ReflectedType.FullName;//类名
+                s_proc_name3     = (new StackTrace()).GetFrame(4).GetMethod().Name;//方法
+                s_proc_dll_name4 = (new StackTrace()).GetFrame(5).GetMethod().ReflectedType.FullName;//类名
+                s_proc_name4     = (new StackTrace()).GetFrame(5).GetMethod().Name;//方法
+                s_user = GlobalVal.UserInfo.LoginName;
+                
+                #region 获取帐号
+                //try
+                //{
+                //    s_accounts = s_user.ToLower().Substring(s_user.IndexOf("\\") + 1);
+                //    if (s_accounts.IndexOf("\\") >= 0) s_accounts = "";
+                //}
+                //catch {}
+                #endregion
+
+                #region 找查使用的应用程序文件
+                //if (s_proc_dll_name1.IndexOf("AddinForERP_") >= 0) 
+                //    s_curr_proc_name = s_proc_dll_name1 + "中的" + s_proc_name1; 
+                //else
+                //    if (s_proc_dll_name2.IndexOf("AddinForERP_") >= 0)
+                //        s_curr_proc_name = s_proc_dll_name2 + "中的" + s_proc_name2;
+                //    else
+                //        if (s_proc_dll_name3.IndexOf("AddinForERP_") >= 0)
+                //            s_curr_proc_name = s_proc_dll_name3 + "中的" + s_proc_name3;
+                //        else
+                //            if (s_proc_dll_name4.IndexOf("AddinForERP_") >= 0)
+                //                s_curr_proc_name = s_proc_dll_name4 + "中的" + s_proc_name4;
+                #endregion
+
+                #region 查找表ID
+                //if (s_proc_dll_name1.IndexOf("FounderTecInfoSys.Addin.ERP.DAL") >= 0)
+                //{
+                //    s_curr_table_id = s_proc_dll_name1.Substring(s_proc_dll_name1.IndexOf("0"), 4);
+                //    s_curr_table_do = s_proc_name1;
+                //}
+                //else
+                //    if (s_proc_dll_name2.IndexOf("FounderTecInfoSys.Addin.ERP.DAL") >= 0)
+                //    {
+                //        s_curr_table_id = s_proc_dll_name2.Substring(s_proc_dll_name2.IndexOf("0"), 4);
+                //        s_curr_table_do = s_proc_name2;
+                //    }
+                //    else
+                //        if (s_proc_dll_name3.IndexOf("FounderTecInfoSys.Addin.ERP.DAL") >= 0)
+                //        {
+                //            s_curr_table_id = s_proc_dll_name3.Substring(s_proc_dll_name3.IndexOf("0"), 4);
+                //            s_curr_table_do = s_proc_name3;
+                //        }
+                //        else
+                //            if (s_proc_dll_name4.IndexOf("FounderTecInfoSys.Addin.ERP.DAL") >= 0)
+                //            {
+                //                s_curr_table_id = s_proc_dll_name4.Substring(s_proc_dll_name4.IndexOf("0"), 4);
+                //                s_curr_table_do = s_proc_name4;
+                //            }
+
+                //if (s_curr_table_do.ToLower() == "add")
+                //    s_curr_table_do = "1";
+                //else
+                //if (s_curr_table_do.ToLower() == "update")
+                //    s_curr_table_do = "2";
+                //else
+                //if (s_curr_table_do.ToLower() == "delete")
+                //    s_curr_table_do = "3";
+                //else
+                //if (s_curr_table_do.ToLower() == "delete")
+                //    s_curr_table_do = "0";
+                //else
+                //    s_curr_table_do = "0";
+                #endregion
+            }
+            catch { }
+
+            #region 修正表ID
+            //try
+            //{
+            //    if (!Func.IsNumberic(s_curr_table_id)) s_curr_table_id = "0";
+            //    if (!Func.IsNumberic(s_curr_table_do)) s_curr_table_do = "0";
+            //}
+            //catch { }
+            #endregion
+
+            try
+            {
+                #region 写入文件
+                //实例化一个文件流--->与写入文件相关联
+                FileStream fs;
+                string dir = DateTime.Now.ToString("yyyy-MM");
+                string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\LOG\" + dir;                
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                if (!File.Exists(path + "\\log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"))
+                    fs = new FileStream(path + "\\log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Create);
+                else
+                    fs = new FileStream(path + "\\log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append);
+
+                //获得字节数组 
+                s_write = s_write + "========================================\r\n";
+                s_write = s_write + "日志时间：" + DateTime.Now.ToString() + "\r\n";
+                s_write = s_write + "域 帐 号：" + s_user + "\r\n";
+                s_write = s_write + "日志类名：" + s_proc_dll_name1 + "中的" + s_proc_name1 + "\r\n";
+                s_write = s_write + "          " + s_proc_dll_name2 + "中的" + s_proc_name2 + "\r\n";
+                s_write = s_write + "          " + s_proc_dll_name3 + "中的" + s_proc_name3 + "\r\n";
+                s_write = s_write + "          " + s_proc_dll_name4 + "中的" + s_proc_name4 + "\r\n";
+                s_write = s_write + "日志级别：" + s_mode + "\r\n";
+                if (ex == null)
+                    s_write = s_write + "日 志 类：\r\n";
+                else
+                    s_write = s_write + "日 志 类：" + ex.StackTrace.ToString().Trim() + "\r\n";
+                s_write = s_write + "返回信息：" + s_msg + "\r\n";
+                s_write = s_write + "========================================\r\n";
+
+                byte[] data = new UTF8Encoding().GetBytes(s_write);
+
+                //开始写入
+
+                fs.Write(data, 0, data.Length);
+                fs.Flush();
+                fs.Close();
+                #endregion
+
+                #region 写到事件日志
+                //if (s_curr_proc_name.Trim().Length == 0)
+                //    s_curr_proc_name = "空";
+
+                //eventLog.Source = s_accounts + "--" + s_curr_proc_name;
+                ////WriteEntry('内容','类型','事件','分类'); 
+                //if (s_mode == "信息")
+                //    eventLog.WriteEntry(s_write, EventLogEntryType.Information, int.Parse(s_curr_table_id), short.Parse(s_curr_table_do));
+                //else
+                //    if (s_mode == "警告")
+                //        eventLog.WriteEntry(s_write, EventLogEntryType.Warning, int.Parse(s_curr_table_id), short.Parse(s_curr_table_do));
+                //    else
+                //        eventLog.WriteEntry(s_write, EventLogEntryType.Error, int.Parse(s_curr_table_id), short.Parse(s_curr_table_do));
+                #endregion
+
+                //删除一星期以前的
+                //DateTime dt_temp;
+                //if (File.Exists(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\log" + DateTime.Now.AddDays(-8).ToShortDateString() + ".txt"))
+                //{
+                //    dt_temp = DateTime.Now.AddDays(-8);
+                //    for (int i = 0; i < 30; i++)
+                //        File.Delete(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\log" + dt_temp.AddDays(-i).ToShortDateString() + ".txt");
+                //}
+            }
+            catch 
+            {   }
+        }
+        #endregion
+
+        #region Info
+        public static void Info(string s_msg)
+        {
+            WriteFile(s_msg, "信息", null);
+        }
+        public static void Info(string s_msg, Exception ex)
+        {
+            WriteFile(s_msg, "信息", ex);
+        }
+        #endregion 
+
+        #region Error
+        public static void Error(string s_msg)
+        {
+            WriteFile(s_msg, "出错", null);
+        }
+        public static void Error(string s_msg, Exception ex)
+        {
+            WriteFile(s_msg, "出错", ex);
+        }
+        #endregion 
+
+        #region Warning
+        public static void Warning(string s_msg)
+        {
+            WriteFile(s_msg, "警告", null);
+        }
+        public static void Warning(string s_msg, Exception ex)
+        {
+            WriteFile(s_msg, "警告", ex);
+        }
+        #endregion
+    }
+}

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1FF98FB6-CAFE-494D-8A39-A5F4C76FC492}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KB.Module</RootNamespace>
+    <AssemblyName>KB.Module</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChildModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildModule.Designer.cs">
+      <DependentUpon>ChildModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Control\ControlButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ControlButton.Designer.cs">
+      <DependentUpon>ControlButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewEx\DataGridViewComboBoxColumnEx.cs" />
+    <Compile Include="DataGridViewEx\DataGridViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainModule.Designer.cs">
+      <DependentUpon>MainModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopWinFormModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopWinFormModule.Designer.cs">
+      <DependentUpon>PopWinFormModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmApproval.Designer.cs">
+      <DependentUpon>FrmApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmData0002.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmData0002.Designer.cs">
+      <DependentUpon>FrmData0002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmData0013.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopWinForm\BL\FrmData0013.Designer.cs">
+      <DependentUpon>FrmData0013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopWinForm\DL\FrmApprovalDL.cs" />
+    <Compile Include="PopWinForm\DL\FrmData0002DL.cs" />
+    <Compile Include="PopWinForm\DL\FrmData0013DL.cs" />
+    <Compile Include="PopWinForm\IL\FrmApprovalIL.cs" />
+    <Compile Include="PopWinForm\IL\FrmData0002IL.cs" />
+    <Compile Include="PopWinForm\IL\FrmData0013IL.cs" />
+    <Compile Include="PrintHelper\RDLReport.cs" />
+    <Compile Include="PrintHelper\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Remote\FrmPrintView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Remote\FrmPrintView.designer.cs">
+      <DependentUpon>FrmPrintView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChildModule.resx">
+      <DependentUpon>ChildModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\ControlButton.resx">
+      <DependentUpon>ControlButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainModule.resx">
+      <DependentUpon>MainModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopWinFormModule.resx">
+      <DependentUpon>PopWinFormModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopWinForm\BL\FrmApproval.resx">
+      <DependentUpon>FrmApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopWinForm\BL\FrmData0002.resx">
+      <DependentUpon>FrmData0002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopWinForm\BL\FrmData0013.resx">
+      <DependentUpon>FrmData0013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Remote\FrmPrintView.resx">
+      <DependentUpon>FrmPrintView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PopWinForm\说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KB.Lib\KB.Lib.csproj">
+      <Project>{7e1cda6b-581e-4afa-adb6-0457fbc989c7}</Project>
+      <Name>KB.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
