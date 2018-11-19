@@ -89,6 +89,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KB.Lib\KB.Lib.csproj">
+      <Project>{7e1cda6b-581e-4afa-adb6-0457fbc989c7}</Project>
+      <Name>KB.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KB.Module1\KB.Module1.csproj">
+      <Project>{8be7f88c-25fe-493d-95e4-9cb1dc6a2ec9}</Project>
+      <Name>KB.Module1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
