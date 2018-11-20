@@ -1,7 +1,7 @@
 ﻿//============================================================
-// 项目名称:	    方正集团 PCB事业部 ERP系统
+// 项目名称:	    格力凯邦   ERP系统
 // 版本号: 		 v1.0
-// CopyRight@ 2010,方正集团 All Rights Reserved 版权所有
+// CopyRight@ 2018,格力凯邦 All Rights Reserved 版权所有
 // 编写日期: 	2010/10/12 16:03:31
 //============================================================
 
@@ -18,10 +18,10 @@ using System.Configuration;
 
 namespace KB.DAL
 {
-	/// <summary>
-	/// 数据访问层   FOUNDERPCB_USERDAL
-	/// </summary>
-	public  partial class FOUNDERPCB_USERDAL
+    /// <summary>
+    /// 数据访问层   GREEKB_USERDAL
+    /// </summary>
+    public partial class GREEKB_USERDAL
 	{ 
 		#region   字段 and 属性
 		DBHelper  dbHelper=null;  
@@ -49,31 +49,31 @@ namespace KB.DAL
 		/// <summary>
 		/// 构造函数
 		/// </summary> 
-		public 	FOUNDERPCB_USERDAL(Form frm)
+		public 	GREEKB_USERDAL(Form frm)
 		{ 
 		    this.FactoryID = GlobalVal.UserInfo.FactoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(frm);
 		}
-		public 	FOUNDERPCB_USERDAL(Form frm, int factoryID)
+		public 	GREEKB_USERDAL(Form frm, int factoryID)
 		{ 
 		    this.FactoryID = factoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(frm);
 		}
-		public 	FOUNDERPCB_USERDAL(int Thread, int factoryID)
+		public 	GREEKB_USERDAL(int Thread, int factoryID)
 		{ 
 		    this.FactoryID = factoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(Thread, this.FactoryID);
 		}
-		public 	FOUNDERPCB_USERDAL(int Thread)
+		public 	GREEKB_USERDAL(int Thread)
 		{ 
 		    this.FactoryID = GlobalVal.UserInfo.FactoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(Thread, this.FactoryID);
 		}
-		public	FOUNDERPCB_USERDAL(DBHelper DB)
+		public	GREEKB_USERDAL(DBHelper DB)
         {
             this.FactoryID = DB.FactoryID;
             this.UserAD    = GlobalVal.UserInfo.LoginName;
@@ -87,7 +87,7 @@ namespace KB.DAL
 		/// </summary>
 		/// <param name="FOUNDERPCB_USER">founderpcb_user对象</param>
 		/// <returns>新插入记录的编号</returns>
-		public int Add(FOUNDERPCB_USER founderpcb_user)
+		public int Add(GREEKB_USER founderpcb_user)
 		{		
 			#region 调用SQL存储过程进行添加
 			string sql="sp_FOUNDERPCB_USER_Add";
@@ -154,7 +154,7 @@ namespace KB.DAL
 			
 			return result;
 		} 
-		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_USER founderpcb_user)
+		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_USER founderpcb_user)
 		{	
 			#region 创建SQL语法
 			StringBuilder strSql = new StringBuilder();
@@ -240,7 +240,7 @@ namespace KB.DAL
 		///</sumary>
 		/// <param name="FOUNDERPCB_USER">founderpcb_user对象</param>
 		///<returns>返回INT类型号, 0为操作成功, 非0操作失败.</returns>
-		public   int Update(FOUNDERPCB_USER founderpcb_user)
+		public   int Update(GREEKB_USER founderpcb_user)
 		{
 			#region 调用SQL存储过程进行修改
 			string sql="sp_FOUNDERPCB_USER_Update";
@@ -303,7 +303,7 @@ namespace KB.DAL
 			
 			return result;			
 		} 
-		public   void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_USER founderpcb_user)
+		public   void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_USER founderpcb_user)
 		{
 			#region 创建语法
 			StringBuilder strSql = new StringBuilder();
@@ -390,7 +390,7 @@ namespace KB.DAL
 		///</sumary>
 		/// <param name="founderpcb_user">对象</param>
 		///<returns>返回INT类型号, 0为操作成功, 非0操作失败.</returns>		
-		public   int Delete(FOUNDERPCB_USER founderpcb_user)
+		public   int Delete(GREEKB_USER founderpcb_user)
 		{
 			#region 调用SQL存储过程进行删除
 			string sql="sp_FOUNDERPCB_USER_Delete";
@@ -497,7 +497,7 @@ namespace KB.DAL
 		///</sumary>
 		/// <param name="RKEY">rkey</param>
 		///<returns>FOUNDERPCB_USER对象</returns>		
-		public FOUNDERPCB_USER getFOUNDERPCB_USERByRKEY(decimal rkey)
+		public GREEKB_USER getFOUNDERPCB_USERByRKEY(decimal rkey)
 		{
 			#region SQL
 			string sql=@"select top 1 
@@ -532,12 +532,12 @@ namespace KB.DAL
 			#endregion
 			
 			///定义返回对象
-			FOUNDERPCB_USER  founderpcb_user=null;
+			GREEKB_USER  founderpcb_user=null;
 			
 			#region 数据库操作
             try
             {
-				 founderpcb_user=new FOUNDERPCB_USER();
+				 founderpcb_user=new GREEKB_USER();
 				
 				using(DataTable tb=dbHelper.GetDataSet(string.Format(sql,rkey)) )
 				{
@@ -574,7 +574,7 @@ namespace KB.DAL
 		///<sumary>
 		///	通过获取所有数据对象
 		///</sumary>
-		public IList< FOUNDERPCB_USER >  FindAllFOUNDERPCB_USER()
+		public IList< GREEKB_USER >  FindAllFOUNDERPCB_USER()
 		{
 			return FindBySql("1=1");
 		} 
@@ -583,7 +583,7 @@ namespace KB.DAL
 		///</sumary>
 		/// <param name="sqlWhere">sqlWhere参数条件</param>
 		///<returns>IList<FOUNDERPCB_USER>数据集合</returns>		
-		public IList< FOUNDERPCB_USER> FindBySql(string sqlWhere)
+		public IList< GREEKB_USER> FindBySql(string sqlWhere)
 		{
 			#region SQL
 			string sql=@"select 
@@ -620,7 +620,7 @@ namespace KB.DAL
 			}
 			#endregion
 			
-			IList<FOUNDERPCB_USER> resultList=new List<FOUNDERPCB_USER>();
+			IList<GREEKB_USER> resultList=new List<GREEKB_USER>();
 			
 			#region 操作
             try
@@ -629,7 +629,7 @@ namespace KB.DAL
 				{
 					foreach(DataRow row in tb.Rows)
 					{
-							FOUNDERPCB_USER  founderpcb_user =new FOUNDERPCB_USER();
+							GREEKB_USER  founderpcb_user =new GREEKB_USER();
 							
 								founderpcb_user.RKEY=decimal.Parse(row["RKEY"].ToString()) ;
 							

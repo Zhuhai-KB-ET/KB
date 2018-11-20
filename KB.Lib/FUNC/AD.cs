@@ -229,8 +229,8 @@ namespace KB.FUNC
         /// <summary>
         /// 单元的结构
         ///   例：
-        ///     "OU=富山分公司,OU=PCB事业部,DC=KB,DC=com"
-        ///     "OU=销售管理,OU=发展公司,OU=PCB事业部,DC=KB,DC=com"
+        ///     "OU=富山分公司,OU= ,DC=KB,DC=com"
+        ///     "OU=销售管理,OU=发展公司,OU= ,DC=KB,DC=com"
         /// </summary>
         public string Distinguishedname
         {
@@ -350,8 +350,8 @@ namespace KB.FUNC
         /// <summary>
         /// 单元的结构
         ///   例：
-        ///     "OU=富山分公司,OU=PCB事业部,DC=KB,DC=com"
-        ///     "OU=销售管理,OU=发展公司,OU=PCB事业部,DC=KB,DC=com"
+        ///     "OU=富山分公司,OU= ,DC=KB,DC=com"
+        ///     "OU=销售管理,OU=发展公司,OU= ,DC=KB,DC=com"
         /// </summary>
         public string Distinguishedname
         {

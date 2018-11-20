@@ -59,7 +59,6 @@
     <Compile Include="BLL\Approval_Mode_3BLL.cs" />
     <Compile Include="BLL\Approval_Mode_4BLL.cs" />
     <Compile Include="BLL\Approval_Mode_NoteBLL.cs" />
-    <Compile Include="BLL\GEN\DATA0001BLL.cs" />
     <Compile Include="BLL\GEN\DATA0002BLL.cs" />
     <Compile Include="BLL\GEN\DATA0003BLL.cs" />
     <Compile Include="BLL\GEN\DATA0004BLL.cs" />
@@ -77,11 +76,11 @@
     <Compile Include="BLL\GEN\FOUNDERPCB_FRIGHTE_03BLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_GROUP_DBLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_GROUP_MBLL.cs" />
-    <Compile Include="BLL\GEN\FOUNDERPCB_LOGIN_LOGBLL.cs" />
+    <Compile Include="BLL\GEN\GREEKB_LOGIN_LOGBLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_MENU_EXTBLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_OPERATION_LOGBLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_SYSTEM_PARABLL.cs" />
-    <Compile Include="BLL\GEN\FOUNDERPCB_USERBLL.cs" />
+    <Compile Include="BLL\GEN\GREEKB_USERBLL.cs" />
     <Compile Include="BLL\GEN\FOUNDERPCB_USER_PERMISSIONBLL.cs" />
     <Compile Include="BLL\RPT_MODULBLL.cs" />
     <Compile Include="BLL\RPT_QUICKREPORT_LINKBLL.cs" />
@@ -94,7 +93,6 @@
     <Compile Include="DAL\Approval_Mode_3DAL.cs" />
     <Compile Include="DAL\Approval_Mode_4DAL.cs" />
     <Compile Include="DAL\Approval_Mode_NoteDAL.cs" />
-    <Compile Include="DAL\GEN\DATA0001DAL.cs" />
     <Compile Include="DAL\GEN\DATA0002DAL.cs" />
     <Compile Include="DAL\GEN\DATA0003DAL.cs" />
     <Compile Include="DAL\GEN\DATA0004DAL.cs" />
@@ -112,11 +110,11 @@
     <Compile Include="DAL\GEN\FOUNDERPCB_FRIGHTE_03DAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_GROUP_DDAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_GROUP_MDAL.cs" />
-    <Compile Include="DAL\GEN\FOUNDERPCB_LOGIN_LOGDAL.cs" />
+    <Compile Include="DAL\GEN\GREEKB_LOGIN_LOGDAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_MENU_EXTDAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_OPERATION_LOGDAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_SYSTEM_PARADAL.cs" />
-    <Compile Include="DAL\GEN\FOUNDERPCB_USERDAL.cs" />
+    <Compile Include="DAL\GEN\GREEKB_USERDAL.cs" />
     <Compile Include="DAL\GEN\FOUNDERPCB_USER_PERMISSIONDAL.cs" />
     <Compile Include="DAL\RPT_MODULDAL.cs" />
     <Compile Include="DAL\RPT_QUICKREPORT_LINKDAL.cs" />
@@ -163,11 +161,11 @@
     <Compile Include="Models\GEN\FOUNDERPCB_FRIGHTE_03.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_GROUP_D.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_GROUP_M.cs" />
-    <Compile Include="Models\GEN\FOUNDERPCB_LOGIN_LOG.cs" />
+    <Compile Include="Models\GEN\GREEKB_LOGIN_LOG.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_MENU_EXT.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_OPERATION_LOG.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_SYSTEM_PARA.cs" />
-    <Compile Include="Models\GEN\FOUNDERPCB_USER.cs" />
+    <Compile Include="Models\GEN\GREEKB_USER.cs" />
     <Compile Include="Models\GEN\FOUNDERPCB_USER_PERMISSION.cs" />
     <Compile Include="Models\RPT_MODUL.cs" />
     <Compile Include="Models\RPT_QUICKREPORT_LINK.cs" />

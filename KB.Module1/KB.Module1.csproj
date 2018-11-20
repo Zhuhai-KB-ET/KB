@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\DATA0001BLL.cs" />
     <Compile Include="BLL\FOUNDERPCB_ANALYSISBLL.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DAL\DATA0001DAL.cs" />
     <Compile Include="DAL\FOUNDERPCB_ANALYSISDAL.cs" />
     <Compile Include="Frm_Analysis.cs">
       <SubType>Form</SubType>
@@ -87,6 +89,7 @@
     <Compile Include="ModelTest.Designer.cs">
       <DependentUpon>ModelTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\DATA0001.cs" />
     <Compile Include="Model\FOUNDERPCB_ANALYSIS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

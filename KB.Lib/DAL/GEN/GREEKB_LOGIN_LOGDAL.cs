@@ -1,7 +1,7 @@
 ﻿//============================================================
-// 项目名称:	    方正集团 PCB事业部 ERP系统
+// 项目名称:	    格力凯邦   ERP系统
 // 版本号: 		 v1.0
-// CopyRight@ 2010,方正集团 All Rights Reserved 版权所有
+// CopyRight@ 2018,格力凯邦 All Rights Reserved 版权所有
 // 编写日期: 	2010/10/12 16:03:30
 //============================================================
 
@@ -19,9 +19,9 @@ using System.Configuration;
 namespace KB.DAL
 {
 	/// <summary>
-	/// 数据访问层   FOUNDERPCB_LOGIN_LOGDAL
+	/// 数据访问层   GREEKB_LOGIN_LOGDAL
 	/// </summary>
-	public  partial class FOUNDERPCB_LOGIN_LOGDAL
+	public  partial class GREEKB_LOGIN_LOGDAL
 	{ 
 		#region   字段 and 属性
 		DBHelper  dbHelper=null;  
@@ -49,31 +49,31 @@ namespace KB.DAL
 		/// <summary>
 		/// 构造函数
 		/// </summary> 
-		public 	FOUNDERPCB_LOGIN_LOGDAL(Form frm)
+		public 	GREEKB_LOGIN_LOGDAL(Form frm)
 		{ 
 		    this.FactoryID = GlobalVal.UserInfo.FactoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(frm);
 		}
-		public 	FOUNDERPCB_LOGIN_LOGDAL(Form frm, int factoryID)
+		public 	GREEKB_LOGIN_LOGDAL(Form frm, int factoryID)
 		{ 
 		    this.FactoryID = factoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(frm);
 		}
-		public 	FOUNDERPCB_LOGIN_LOGDAL(int Thread, int factoryID)
+		public 	GREEKB_LOGIN_LOGDAL(int Thread, int factoryID)
 		{ 
 		    this.FactoryID = factoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(Thread, this.FactoryID);
 		}
-		public 	FOUNDERPCB_LOGIN_LOGDAL(int Thread)
+		public 	GREEKB_LOGIN_LOGDAL(int Thread)
 		{ 
 		    this.FactoryID = GlobalVal.UserInfo.FactoryID;
 			this.UserAD    = GlobalVal.UserInfo.LoginName;
 			this.dbHelper  = new DBHelper(Thread, this.FactoryID);
 		}
-		public	FOUNDERPCB_LOGIN_LOGDAL(DBHelper DB)
+		public	GREEKB_LOGIN_LOGDAL(DBHelper DB)
         {
             this.FactoryID = DB.FactoryID;
             this.UserAD    = GlobalVal.UserInfo.LoginName;
@@ -85,12 +85,12 @@ namespace KB.DAL
 		/// <summary>
 		/// 向数据库中插入一条新记录。
 		/// </summary>
-		/// <param name="FOUNDERPCB_LOGIN_LOG">founderpcb_login_log对象</param>
+		/// <param name="GREEKB_LOGIN_LOG">GREEKB_login_log对象</param>
 		/// <returns>新插入记录的编号</returns>
-		public int Add(FOUNDERPCB_LOGIN_LOG founderpcb_login_log)
+		public int Add(GREEKB_LOGIN_LOG GREEKB_login_log)
 		{		
 			#region 调用SQL存储过程进行添加
-			string sql="sp_FOUNDERPCB_LOGIN_LOG_Add";
+			string sql="sp_GREEKB_LOGIN_LOG_Add";
 			///存储过程名
 			SqlParameter[] parameters={
 			new SqlParameter("@returnID",SqlDbType.Int),
@@ -109,19 +109,19 @@ namespace KB.DAL
 			  parameters[0].Direction =ParameterDirection.InputOutput ;	
 			  parameters[1].Value=this.userAD;
 			  parameters[2].Direction =ParameterDirection.InputOutput ;
-			  parameters[2].Value=founderpcb_login_log.RKEY;
-			       parameters[3].Value=founderpcb_login_log.PRO_RKEY;
-			       parameters[4].Value=founderpcb_login_log.LOGIN_ID;
-			       parameters[5].Value=founderpcb_login_log.LOGIN_NAME;
-			       parameters[6].Value=founderpcb_login_log.LOGIN_IP;
-					if (founderpcb_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
+			  parameters[2].Value=GREEKB_login_log.RKEY;
+			       parameters[3].Value=GREEKB_login_log.PRO_RKEY;
+			       parameters[4].Value=GREEKB_login_log.LOGIN_ID;
+			       parameters[5].Value=GREEKB_login_log.LOGIN_NAME;
+			       parameters[6].Value=GREEKB_login_log.LOGIN_IP;
+					if (GREEKB_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
 						parameters[7].Value = null;
 					else
-						parameters[7].Value=founderpcb_login_log.LOGIN_DATE;				    
-					if (founderpcb_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
+						parameters[7].Value=GREEKB_login_log.LOGIN_DATE;				    
+					if (GREEKB_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
 						parameters[8].Value = null;
 					else
-						parameters[8].Value=founderpcb_login_log.LOGIN_OUT;				    
+						parameters[8].Value=GREEKB_login_log.LOGIN_OUT;				    
 				
 			#endregion 
 			
@@ -131,9 +131,9 @@ namespace KB.DAL
             {
 				dbHelper.ExecuteCommandProc(sql, parameters);
 				result = int.Parse(parameters[0].Value.ToString());
-				founderpcb_login_log.RKEY=decimal.Parse(parameters[2].Value.ToString());
+				GREEKB_login_log.RKEY=decimal.Parse(parameters[2].Value.ToString());
 				
-			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";FOUNDERPCB_LOGIN_LOG,save successful");
+			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";GREEKB_LOGIN_LOG,save successful");
             } 
             catch (Exception e)
             {
@@ -145,11 +145,11 @@ namespace KB.DAL
 			
 			return result;
 		} 
-		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_LOGIN_LOG founderpcb_login_log)
+		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_LOGIN_LOG GREEKB_login_log)
 		{	
 			#region 创建SQL语法
 			StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into FOUNDERPCB_LOGIN_LOG(");
+            strSql.Append("insert into GREEKB_LOGIN_LOG(");
 			strSql.Append("PRO_RKEY,LOGIN_ID,LOGIN_NAME,LOGIN_IP,LOGIN_DATE,LOGIN_OUT");
 			strSql.Append(" ) values (");
 			strSql.Append("@PRO_RKEY,@LOGIN_ID,@LOGIN_NAME,@LOGIN_IP,@LOGIN_DATE,@LOGIN_OUT");
@@ -164,18 +164,18 @@ namespace KB.DAL
 			new SqlParameter("@LOGIN_OUT",SqlDbType.DateTime,8)
 			};
 			
-			       parameters[0].Value=founderpcb_login_log.PRO_RKEY;
-			       parameters[1].Value=founderpcb_login_log.LOGIN_ID;
-			       parameters[2].Value=founderpcb_login_log.LOGIN_NAME;
-			       parameters[3].Value=founderpcb_login_log.LOGIN_IP;
-					if (founderpcb_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
+			       parameters[0].Value=GREEKB_login_log.PRO_RKEY;
+			       parameters[1].Value=GREEKB_login_log.LOGIN_ID;
+			       parameters[2].Value=GREEKB_login_log.LOGIN_NAME;
+			       parameters[3].Value=GREEKB_login_log.LOGIN_IP;
+					if (GREEKB_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
 						parameters[4].Value = null;
 					else
-						parameters[4].Value=founderpcb_login_log.LOGIN_DATE;				    
-					if (founderpcb_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
+						parameters[4].Value=GREEKB_login_log.LOGIN_DATE;				    
+					if (GREEKB_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
 						parameters[5].Value = null;
 					else
-						parameters[5].Value=founderpcb_login_log.LOGIN_OUT;				    
+						parameters[5].Value=GREEKB_login_log.LOGIN_OUT;				    
 			#endregion
 			
 			#region 操作
@@ -220,12 +220,12 @@ namespace KB.DAL
 		///<sumary>
 		///修改  
 		///</sumary>
-		/// <param name="FOUNDERPCB_LOGIN_LOG">founderpcb_login_log对象</param>
+		/// <param name="GREEKB_LOGIN_LOG">GREEKB_login_log对象</param>
 		///<returns>返回INT类型号, 0为操作成功, 非0操作失败.</returns>
-		public   int Update(FOUNDERPCB_LOGIN_LOG founderpcb_login_log)
+		public   int Update(GREEKB_LOGIN_LOG GREEKB_login_log)
 		{
 			#region 调用SQL存储过程进行修改
-			string sql="sp_FOUNDERPCB_LOGIN_LOG_Update";
+			string sql="sp_GREEKB_LOGIN_LOG_Update";
 			//=====
 			
 			SqlParameter[] parameters={
@@ -242,19 +242,19 @@ namespace KB.DAL
 			  parameters[0].Value=1;
 			  parameters[0].Direction =ParameterDirection.InputOutput ;		
 			  parameters[1].Value=this.userAD;
-			  parameters[2].Value=founderpcb_login_log.RKEY;
-			  		parameters[3].Value=founderpcb_login_log.PRO_RKEY;
-			  		parameters[4].Value=founderpcb_login_log.LOGIN_ID;
-			  		parameters[5].Value=founderpcb_login_log.LOGIN_NAME;
-			  		parameters[6].Value=founderpcb_login_log.LOGIN_IP;
-					if (founderpcb_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
+			  parameters[2].Value=GREEKB_login_log.RKEY;
+			  		parameters[3].Value=GREEKB_login_log.PRO_RKEY;
+			  		parameters[4].Value=GREEKB_login_log.LOGIN_ID;
+			  		parameters[5].Value=GREEKB_login_log.LOGIN_NAME;
+			  		parameters[6].Value=GREEKB_login_log.LOGIN_IP;
+					if (GREEKB_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
 						parameters[7].Value = null;
 					else
-						parameters[7].Value=founderpcb_login_log.LOGIN_DATE;				    
-					if (founderpcb_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
+						parameters[7].Value=GREEKB_login_log.LOGIN_DATE;				    
+					if (GREEKB_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
 						parameters[8].Value = null;
 					else
-						parameters[8].Value=founderpcb_login_log.LOGIN_OUT;				    
+						parameters[8].Value=GREEKB_login_log.LOGIN_OUT;				    
 			
 			//=== 
 			#endregion 
@@ -265,7 +265,7 @@ namespace KB.DAL
             {
 				dbHelper.ExecuteCommandProc(sql, parameters);
 				result = int.Parse(parameters[0].Value.ToString()); 
-			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";FOUNDERPCB_LOGIN_LOG,update successful");
+			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";GREEKB_LOGIN_LOG,update successful");
             }
             catch (Exception e)
             {
@@ -276,11 +276,11 @@ namespace KB.DAL
 			
 			return result;			
 		} 
-		public   void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_LOGIN_LOG founderpcb_login_log)
+		public   void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_LOGIN_LOG GREEKB_login_log)
 		{
 			#region 创建语法
 			StringBuilder strSql = new StringBuilder();
-			strSql.Append("update FOUNDERPCB_LOGIN_LOG set "); 
+			strSql.Append("update GREEKB_LOGIN_LOG set "); 
 			strSql.Append("PRO_RKEY=@PRO_RKEY,");
 			strSql.Append("LOGIN_ID=@LOGIN_ID,");
 			strSql.Append("LOGIN_NAME=@LOGIN_NAME,");
@@ -299,19 +299,19 @@ namespace KB.DAL
 			new SqlParameter("@LOGIN_OUT",SqlDbType.DateTime,8)
 			};
 			
-			parameters[0].Value = founderpcb_login_log.RKEY;
-			       parameters[1].Value=founderpcb_login_log.PRO_RKEY;
-			       parameters[2].Value=founderpcb_login_log.LOGIN_ID;
-			       parameters[3].Value=founderpcb_login_log.LOGIN_NAME;
-			       parameters[4].Value=founderpcb_login_log.LOGIN_IP;
-					if (founderpcb_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
+			parameters[0].Value = GREEKB_login_log.RKEY;
+			       parameters[1].Value=GREEKB_login_log.PRO_RKEY;
+			       parameters[2].Value=GREEKB_login_log.LOGIN_ID;
+			       parameters[3].Value=GREEKB_login_log.LOGIN_NAME;
+			       parameters[4].Value=GREEKB_login_log.LOGIN_IP;
+					if (GREEKB_login_log.LOGIN_DATE == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_DATE == DateTime.Parse("0001-1-1"))
 						parameters[5].Value = null;
 					else
-						parameters[5].Value=founderpcb_login_log.LOGIN_DATE;				    
-					if (founderpcb_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || founderpcb_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
+						parameters[5].Value=GREEKB_login_log.LOGIN_DATE;				    
+					if (GREEKB_login_log.LOGIN_OUT == DateTime.Parse("1900-1-1") || GREEKB_login_log.LOGIN_OUT == DateTime.Parse("0001-1-1"))
 						parameters[6].Value = null;
 					else
-						parameters[6].Value=founderpcb_login_log.LOGIN_OUT;				    
+						parameters[6].Value=GREEKB_login_log.LOGIN_OUT;				    
 			#endregion
 			
 			#region 操作
@@ -346,12 +346,12 @@ namespace KB.DAL
 		///<sumary>
 		/// 删除  
 		///</sumary>
-		/// <param name="founderpcb_login_log">对象</param>
+		/// <param name="GREEKB_login_log">对象</param>
 		///<returns>返回INT类型号, 0为操作成功, 非0操作失败.</returns>		
-		public   int Delete(FOUNDERPCB_LOGIN_LOG founderpcb_login_log)
+		public   int Delete(GREEKB_LOGIN_LOG GREEKB_login_log)
 		{
 			#region 调用SQL存储过程进行删除
-			string sql="sp_FOUNDERPCB_LOGIN_LOG_Delete";
+			string sql="sp_GREEKB_LOGIN_LOG_Delete";
 			//=========================
 			SqlParameter[] parameters={
 			new SqlParameter("@returnID",SqlDbType.Int),
@@ -361,7 +361,7 @@ namespace KB.DAL
 			  parameters[0].Value=1;
 			  parameters[0].Direction =ParameterDirection.InputOutput ;
 			  parameters[1].Value=this.userAD;
-			  parameters[2].Value=founderpcb_login_log.RKEY;
+			  parameters[2].Value=GREEKB_login_log.RKEY;
 			
 			
 			//=========================
@@ -373,7 +373,7 @@ namespace KB.DAL
             { 
 				dbHelper.ExecuteCommandProc(sql, parameters);
 				result = int.Parse(parameters[0].Value.ToString());
-			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";FOUNDERPCB_LOGIN_LOG,delete successful");
+			//	log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";GREEKB_LOGIN_LOG,delete successful");
             }
             catch (Exception e)
             {
@@ -387,19 +387,19 @@ namespace KB.DAL
 		///<sumary>
 		/// 删除  
 		///</sumary>
-		/// <param name="founderpcb_login_log">对象</param>
+		/// <param name="GREEKB_login_log">对象</param>
 		///<returns>返回操作所影响的行数</returns>		 
 		public   int DeleteByRKEY(decimal rkey)
 		{
 			#region 调用SQL存储过程进行删除
-			string sql="delete from dbo.FOUNDERPCB_LOGIN_LOG where RKEY='"+rkey+"'";
+			string sql="delete from dbo.GREEKB_LOGIN_LOG where RKEY='"+rkey+"'";
 			int result=0;
 		
             try
             {
 				dbHelper.ExecuteCommand(sql);
 				result=0;
-				log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";FOUNDERPCB_LOGIN_LOG,delete successful");
+				log.Info("FID="+this.factoryID.ToString()+";userAD="+this.userAD+";GREEKB_LOGIN_LOG,delete successful");
             }
             catch (Exception e)
             {
@@ -415,7 +415,7 @@ namespace KB.DAL
 		{
 			#region 创建语法
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("delete from founderpcb_login_log ");
+			strSql.Append("delete from GREEKB_login_log ");
 			strSql.Append(" where RKEY=@RKEY ");
 			
 			SqlParameter[] parameters = {new SqlParameter("@RKEY",SqlDbType.Decimal,9)};				
@@ -454,8 +454,8 @@ namespace KB.DAL
 		///	通过主键获取数据对象
 		///</sumary>
 		/// <param name="RKEY">rkey</param>
-		///<returns>FOUNDERPCB_LOGIN_LOG对象</returns>		
-		public FOUNDERPCB_LOGIN_LOG getFOUNDERPCB_LOGIN_LOGByRKEY(decimal rkey)
+		///<returns>GREEKB_LOGIN_LOG对象</returns>		
+		public GREEKB_LOGIN_LOG getGREEKB_LOGIN_LOGByRKEY(decimal rkey)
 		{
 			#region SQL
 			string sql=@"select top 1 
@@ -473,29 +473,29 @@ namespace KB.DAL
 				,
 				isNull(login_out,'1900-1-1') as login_out
 				
-			from FOUNDERPCB_LOGIN_LOG with (nolock) where RKEY='{0}'";
+			from GREEKB_LOGIN_LOG with (nolock) where RKEY='{0}'";
              
 			#endregion
 			
 			///定义返回对象
-			FOUNDERPCB_LOGIN_LOG  founderpcb_login_log=null;
+			GREEKB_LOGIN_LOG  GREEKB_login_log=null;
 			
 			#region 数据库操作
             try
             {
-				 founderpcb_login_log=new FOUNDERPCB_LOGIN_LOG();
+				 GREEKB_login_log=new GREEKB_LOGIN_LOG();
 				
 				using(DataTable tb=dbHelper.GetDataSet(string.Format(sql,rkey)) )
 				{
 					foreach(DataRow row in tb.Rows)
 					{	
-							    founderpcb_login_log.RKEY=decimal.Parse(row["RKEY"].ToString()) ;
-							  	        founderpcb_login_log.PRO_RKEY =decimal.Parse(row["PRO_RKEY"].ToString());
-								   founderpcb_login_log.LOGIN_ID =row["LOGIN_ID"].ToString();
-								   founderpcb_login_log.LOGIN_NAME =row["LOGIN_NAME"].ToString();
-								   founderpcb_login_log.LOGIN_IP =row["LOGIN_IP"].ToString();
-							  	        founderpcb_login_log.LOGIN_DATE =DateTime.Parse(row["LOGIN_DATE"].ToString());
-							  	        founderpcb_login_log.LOGIN_OUT =DateTime.Parse(row["LOGIN_OUT"].ToString());
+							    GREEKB_login_log.RKEY=decimal.Parse(row["RKEY"].ToString()) ;
+							  	        GREEKB_login_log.PRO_RKEY =decimal.Parse(row["PRO_RKEY"].ToString());
+								   GREEKB_login_log.LOGIN_ID =row["LOGIN_ID"].ToString();
+								   GREEKB_login_log.LOGIN_NAME =row["LOGIN_NAME"].ToString();
+								   GREEKB_login_log.LOGIN_IP =row["LOGIN_IP"].ToString();
+							  	        GREEKB_login_log.LOGIN_DATE =DateTime.Parse(row["LOGIN_DATE"].ToString());
+							  	        GREEKB_login_log.LOGIN_OUT =DateTime.Parse(row["LOGIN_OUT"].ToString());
 							
 	
 							
@@ -509,12 +509,12 @@ namespace KB.DAL
             } 
 			#endregion
 			
-			return founderpcb_login_log;			
+			return GREEKB_login_log;			
 		}
 		///<sumary>
 		///	通过获取所有数据对象
 		///</sumary>
-		public IList< FOUNDERPCB_LOGIN_LOG >  FindAllFOUNDERPCB_LOGIN_LOG()
+		public IList< GREEKB_LOGIN_LOG >  FindAllGREEKB_LOGIN_LOG()
 		{
 			return FindBySql("1=1");
 		} 
@@ -522,8 +522,8 @@ namespace KB.DAL
 		///	通过SQL语句获取数据对象
 		///</sumary>
 		/// <param name="sqlWhere">sqlWhere参数条件</param>
-		///<returns>IList<FOUNDERPCB_LOGIN_LOG>数据集合</returns>		
-		public IList< FOUNDERPCB_LOGIN_LOG> FindBySql(string sqlWhere)
+		///<returns>IList<GREEKB_LOGIN_LOG>数据集合</returns>		
+		public IList< GREEKB_LOGIN_LOG> FindBySql(string sqlWhere)
 		{
 			#region SQL
 			string sql=@"select 
@@ -541,14 +541,14 @@ namespace KB.DAL
 				,
 				isNull(login_out,'1900-1-1') as login_out
 				
-			from FOUNDERPCB_LOGIN_LOG with (nolock)";
+			from GREEKB_LOGIN_LOG with (nolock)";
 			if(sqlWhere.Length>0)
 			{
 				sql=sql+" where "+sqlWhere;	
 			}
 			#endregion
 			
-			IList<FOUNDERPCB_LOGIN_LOG> resultList=new List<FOUNDERPCB_LOGIN_LOG>();
+			IList<GREEKB_LOGIN_LOG> resultList=new List<GREEKB_LOGIN_LOG>();
 			
 			#region 操作
             try
@@ -557,18 +557,18 @@ namespace KB.DAL
 				{
 					foreach(DataRow row in tb.Rows)
 					{
-							FOUNDERPCB_LOGIN_LOG  founderpcb_login_log =new FOUNDERPCB_LOGIN_LOG();
+							GREEKB_LOGIN_LOG  GREEKB_login_log =new GREEKB_LOGIN_LOG();
 							
-								founderpcb_login_log.RKEY=decimal.Parse(row["RKEY"].ToString()) ;
+								GREEKB_login_log.RKEY=decimal.Parse(row["RKEY"].ToString()) ;
 							
-								  	founderpcb_login_log.PRO_RKEY =decimal.Parse(row["PRO_RKEY"].ToString()) ;
-							      founderpcb_login_log.LOGIN_ID =row["LOGIN_ID"].ToString();
-							      founderpcb_login_log.LOGIN_NAME =row["LOGIN_NAME"].ToString();
-							      founderpcb_login_log.LOGIN_IP =row["LOGIN_IP"].ToString();
-								  	founderpcb_login_log.LOGIN_DATE =DateTime.Parse(row["LOGIN_DATE"].ToString()) ;
-								  	founderpcb_login_log.LOGIN_OUT =DateTime.Parse(row["LOGIN_OUT"].ToString()) ;
+								  	GREEKB_login_log.PRO_RKEY =decimal.Parse(row["PRO_RKEY"].ToString()) ;
+							      GREEKB_login_log.LOGIN_ID =row["LOGIN_ID"].ToString();
+							      GREEKB_login_log.LOGIN_NAME =row["LOGIN_NAME"].ToString();
+							      GREEKB_login_log.LOGIN_IP =row["LOGIN_IP"].ToString();
+								  	GREEKB_login_log.LOGIN_DATE =DateTime.Parse(row["LOGIN_DATE"].ToString()) ;
+								  	GREEKB_login_log.LOGIN_OUT =DateTime.Parse(row["LOGIN_OUT"].ToString()) ;
 		
-							resultList.Add(founderpcb_login_log);
+							resultList.Add(GREEKB_login_log);
 					}
 				}
             }

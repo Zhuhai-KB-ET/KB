@@ -17,7 +17,7 @@ namespace KB.FUNC
         /// <summary>
         /// 系统名称
         /// </summary>
-        public static string SystemName = "FOUNDERPCB ERP";
+        public static string SystemName = "Gree KB";
         /// <summary>
         /// 系统最新版本号
         /// </summary>
@@ -119,64 +119,7 @@ namespace KB.FUNC
                 #region 获取
 
                 #region SQL语法
-                //s_SQL = @" 
-                //select * 
-                //  from (
-                //        select '用户'             as Category,
-                //               tf1.UP_MODULE_ID   as UP_ID,
-                //               tf1.MODULE_ID      as ID, 
-                //               t1.sort            as sort,
-                //               ''                 as UP_ENGLISH,
-                //               tf1.MODULE_ENGLISH as ENGLISH,
-                //               tf1.MODULE_NAME    as [NAME],
-                //               tf1.MODULE_DESC    as [DESC],
-                //               t1.PERMISSION      as PERMISSION
-                //          from FOUNDERPCB_USER t with (nolock)
-                //                inner join FOUNDERPCB_USER_PERMISSION t1  with (nolock) on t.rkey   = t1.PRO_RKEY
-                //                inner join FOUNDERPCB_FRIGHTE_01      tf1 with (nolock) on tf1.rkey = t1.SRCE_PTR
-                //         where t1.SORT = 1
-                //           and t.LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + @"'
-                //
-                //        union all 
-                //
-                //        select '用户'                as Category,
-                //               tf1.MODULE_ID         as UP_ID,
-                //               tf1.MODULE_ID         as ID, 
-                //               t1.sort               as sort,
-                //               ''                    as UP_ENGLISH,
-                //               tf2.OPERATION_ENGLISH as ENGLISH,
-                //               tf2.OPERATION_NAME    as [NAME],
-                //               tf2.OPERATION_DESC    as [DESC],
-                //               t1.PERMISSION         as PERMISSION 
-                //          from FOUNDERPCB_USER t with (nolock)
-                //                inner join FOUNDERPCB_USER_PERMISSION t1  with (nolock) on t.rkey   = t1.PRO_RKEY
-                //                inner join FOUNDERPCB_FRIGHTE_02 tf2      with (nolock) on tf2.rkey = t1.SRCE_PTR
-                //                inner join FOUNDERPCB_FRIGHTE_01 tf1      with (nolock) on tf1.rkey = tf2.PRO_RKEY
-                //         where t1.SORT = 2
-                //           and t.LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + @"'
-                //
-                //        union all
-                //
-                //        select '用户'                as Category,
-                //               tf1.MODULE_ID         as UP_ID,
-                //               tf1.MODULE_ID         as ID, 
-                //               t1.sort               as sort,
-                //               tf2.OPERATION_ENGLISH as UP_ENGLISH, 
-                //               tf3.FIELD_ENGLISH     as ENGLISH,
-                //               tf3.FIELD_NAME        as [NAME],
-                //               tf3.FIELD_DESC        as [DESC],
-                //               t1.PERMISSION         as PERMISSION 
-                //          from FOUNDERPCB_USER t with (nolock)
-                //                inner join FOUNDERPCB_USER_PERMISSION t1  with (nolock) on t.rkey = t1.PRO_RKEY
-                //                inner join FOUNDERPCB_FRIGHTE_03 tf3 with (nolock) on tf3.rkey    = t1.SRCE_PTR
-                //                inner join FOUNDERPCB_FRIGHTE_02 tf2 with (nolock) on tf2.rkey    = tf3.PRO2_RKEY
-                //                inner join FOUNDERPCB_FRIGHTE_01 tf1 with (nolock) on tf1.rkey    = tf2.PRO_RKEY
-                //         where t1.SORT = 3
-                //           and t.LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + @"' 
-                //       ) mx
-                //order by UP_ID, ID, sort
-                //";
-                //使用权限组，关联
+                
                 s_SQL = @"with tb_role as (
 select max(aa.sort) sort,
                                    MAX(aa.srce_ptr) srce_ptr,
@@ -188,7 +131,7 @@ select max(aa.sort) sort,
 				                            isNull(a.sort,0) as sort,
 				                            isNull(a.srce_ptr,'') as srce_ptr,
 				                            isNull(a.permission,'') as permission
-		                            from FOUNDERPCB_USER_PERMISSION a with(nolock)
+		                            from GREEKB_USER_PERMISSION a with(nolock)
 		                            where a.PERMISSION!='00' and  PRO_RKEY={0}
                             union all
                                     select  
@@ -197,10 +140,10 @@ select max(aa.sort) sort,
 				                            isNull(a.sort,0) as sort,
 				                            isNull(a.srce_ptr,'') as srce_ptr,
 				                            isNull(a.permission,'') as permission
-                                    from FOUNDERPCB_GROUP_D a with(nolock)
-		                            left join FOUNDERPCB_GROUP_M with(nolock) on a.PRO_RKEY=FOUNDERPCB_GROUP_M.RKEY
-		                            left join FOUNDERPCB_USER with(nolock) on FOUNDERPCB_USER.PRO_RKEY=FOUNDERPCB_GROUP_M.RKEY
-		                            where a.PERMISSION!='00' and  FOUNDERPCB_USER.RKEY={0}
+                                    from GREEKB_GROUP_D a with(nolock)
+		                            left join GREEKB_GROUP_M with(nolock) on a.PRO_RKEY=GREEKB_GROUP_M.RKEY
+		                            left join GREEKB_USER with(nolock) on GREEKB_USER.PRO_RKEY=GREEKB_GROUP_M.RKEY
+		                            where a.PERMISSION!='00' and  GREEKB_USER.RKEY={0}
                             ) aa
                             group by aa.sort,aa.srce_ptr,aa.permission ) 
  
@@ -215,7 +158,7 @@ select '用户'             as Category,
                tf1.MODULE_DESC    as [DESC],
                t.PERMISSION      as PERMISSION 
           from tb_role t                            
-                inner join FOUNDERPCB_FRIGHTE_01  tf1 with (nolock) on tf1.rkey = t.SRCE_PTR  and t.sort=1              
+                inner join GREEKB_FRIGHTE_01  tf1 with (nolock) on tf1.rkey = t.SRCE_PTR  and t.sort=1              
       
   union all 
 
@@ -229,8 +172,8 @@ select '用户'             as Category,
                tf2.OPERATION_DESC    as [DESC],
                t.PERMISSION         as PERMISSION 
           from tb_role t
-                inner join FOUNDERPCB_FRIGHTE_02 tf2      with (nolock) on tf2.rkey = t.SRCE_PTR and t.SORT = 2
-                inner join FOUNDERPCB_FRIGHTE_01 tf1      with (nolock) on tf1.rkey = tf2.PRO_RKEY
+                inner join GREEKB_FRIGHTE_02 tf2      with (nolock) on tf2.rkey = t.SRCE_PTR and t.SORT = 2
+                inner join GREEKB_FRIGHTE_01 tf1      with (nolock) on tf1.rkey = tf2.PRO_RKEY
       
         union all
 
@@ -244,36 +187,14 @@ select '用户'             as Category,
                tf3.FIELD_DESC        as [DESC],
                t.PERMISSION         as PERMISSION
           from tb_role t
-                inner join FOUNDERPCB_FRIGHTE_03 tf3 with (nolock) on tf3.rkey    = t.SRCE_PTR and t.SORT = 3
-                inner join FOUNDERPCB_FRIGHTE_02 tf2 with (nolock) on tf2.rkey    = tf3.PRO2_RKEY
-                inner join FOUNDERPCB_FRIGHTE_01 tf1 with (nolock) on tf1.rkey    = tf2.PRO_RKEY
+                inner join GREEKB_FRIGHTE_03 tf3 with (nolock) on tf3.rkey    = t.SRCE_PTR and t.SORT = 3
+                inner join GREEKB_FRIGHTE_02 tf2 with (nolock) on tf2.rkey    = tf3.PRO2_RKEY
+                inner join GREEKB_FRIGHTE_01 tf1 with (nolock) on tf1.rkey    = tf2.PRO_RKEY
 ";
                 #endregion
 
                 tb = DB.GetDataSet(string.Format(s_SQL, GlobalVal.UserInfo.UserRkey));
-                //用户大于组
-                //s_temp1 = ""; s_temp2 = ""; s_temp3 = ""; s_temp4 = ""; 
-                //for (int i = 0; i < tb.Rows.Count; i++)
-                //{
-                //    if (s_temp1 != tb.Rows[i]["Category"].ToString().Trim() && s_temp2 == tb.Rows[i]["UP_ID"].ToString().Trim() && s_temp3 == tb.Rows[i]["ID"].ToString().Trim() && s_temp4 == tb.Rows[i]["UP_ENGLISH"].ToString().Trim())
-                //    {
-                //        if (tb.Rows[i]["Category"].ToString().Trim() == "组")
-                //        {
-                //            tb.Rows.RemoveAt(i);
-                //            i--;
-                //        }
-                //        if (s_temp1 == "组")
-                //        {
-                //            tb.Rows.RemoveAt(i - 1);
-                //            i--;
-                //        }
-                //    }
-
-                //    s_temp1 = tb.Rows[i]["Category"].ToString().Trim();
-                //    s_temp2 = tb.Rows[i]["UP_ID"].ToString().Trim();
-                //    s_temp3 = tb.Rows[i]["ID"].ToString().Trim();
-                //    s_temp4 = tb.Rows[i]["UP_ENGLISH"].ToString().Trim();
-                //}
+                
                 for (int i = 0; i < tb.Rows.Count; i++)
                 {
                     permission[i].UP_ID = tb.Rows[i]["UP_ID"].ToString().Trim();
@@ -315,65 +236,41 @@ select '用户'             as Category,
                 catch
                 {
                     MessageBox.Show("警告:SQLite数据库信息读取失败");
-                    #region 1富山
-                    DBConnectionString[1, 1] = "Data Source=erpdb01;Initial Catalog=live;User ID=FOUNDER;Password=FOUNDER";
-                    DBConnectionString[1, 2] = "Data Source=erpdb01;Initial Catalog=samp;User ID=FOUNDER;Password=FOUNDER";
+                    #region 1珠海凯邦
+                    //正式数据库
+                    DBConnectionString[1, 1] = "Data Source=DJ11-FWQS\\KBMSSQL;Initial Catalog=KB;User ID=kblive;Password=kbpassword#";
+                    //测试数据库
+                    DBConnectionString[1, 2] = "Data Source=DJ11-FWQS\\KBMSSQL;Initial Catalog=KBTEST;User ID=kbtest;Password=kbpassword#";
+
+                    //预留报表平台数据库
                     DBConnectionString[1, 3] = "Data Source=erpdb01;Initial Catalog=test;User ID=reportAdmin;Password=reportAdmin#";
                     // DBConnectionString[1, 3] = "Data Source=pcbit-live01;Initial Catalog=test;User ID=reportAdmin;Password=reportAdmin#";
+                    //预留报表平台数据库
                     DBConnectionString[1, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F3_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=erpdb01;Initial Catalog=demo;User ID=FOUNDER;Password=FOUNDER";
                     #endregion
 
-                    #region 8多层
+                    #region 8郑州凯邦
                     DBConnectionString[8, 1] = "Data Source=dcerp03;Initial Catalog=dcv36Live;User ID=reportAdmin;Password=reportAdmin#";
                     DBConnectionString[8, 2] = "Data Source=dcerp03;Initial Catalog=DCV36Samp;User ID=reportAdmin;Password=reportAdmin#";
                     DBConnectionString[8, 3] = "Data Source=dcerp03;Initial Catalog=dcv36test;User ID=reportAdmin;Password=reportAdmin#";
                     DBConnectionString[8, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F1_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=dcerp03;Initial Catalog=dcv36demo;User ID=reportAdmin;Password=reportAdmin#";
                     #endregion
 
-                    #region 3越亚
+                    #region 3重庆凯邦
                     DBConnectionString[3, 1] = "Data Source=erpdb02;Initial Catalog=live;User ID=developer;Password=system";
                     DBConnectionString[3, 2] = "Data Source=erpdb02;Initial Catalog=samp;User ID=developer;Password=system";
                     DBConnectionString[3, 3] = "Data Source=erpdb02;Initial Catalog=test;User ID=developer;Password=system";
                     DBConnectionString[3, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F4_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=erpdb02;Initial Catalog=demo;User ID=developer;Password=system";
                     #endregion
 
-                    #region 4速能
+                    #region 4合肥凯邦
                     DBConnectionString[4, 1] = "Data Source=snerp02;Initial Catalog=live;User ID=reportAdmin;Password=reportAdmin#";
                     DBConnectionString[4, 2] = "Data Source=snerp02;Initial Catalog=sample;User ID=dbtest;Password=liqiang@";
                     DBConnectionString[4, 3] = "Data Source=snerp01;Initial Catalog=test;User ID=dbtest;Password=lilinfeng";
                     DBConnectionString[4, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F2_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=snerp01;Initial Catalog=demo;User ID=dbtest;Password=lilinfeng";
                     #endregion
-
-                    #region 5重庆
-                    DBConnectionString[5, 1] = "Data Source=cqerp04;Initial Catalog=live;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[5, 2] = "Data Source=cqerp04;Initial Catalog=sample;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[5, 3] = "Data Source=cqerp04;Initial Catalog=demo;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[5, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F6_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=cqerp04;Initial Catalog=demo;User ID=reportAdmin;Password=reportAdmin#";
-                    //  DBConnectionString[5, 4] = @"Data Source=cqk201;Initial Catalog=INPLAN;User ID=cqinplantest;Password=cqinplantest#";
-                    #endregion
-
-                    #region 6高密
-                    DBConnectionString[6, 1] = "Data Source=pcberp01;Initial Catalog=KBLIVE;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[6, 2] = "Data Source=pcberp01;Initial Catalog=KBDemo;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[6, 3] = "Data Source=pcberp01;Initial Catalog=KBTEST;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[6, 4] = @"Data Source=pcbdevelop02\sqlserver;Initial Catalog=F5_TEST;User ID=reportAdmin;Password=reportAdmin#";// "Data Source=pcberp01;Initial Catalog=KBTEST;User ID=reportAdmin;Password=reportAdmin#";
-                    #endregion
-
-                    #region 7外包厂
-                    DBConnectionString[7, 1] = "Data Source=pcberp01;Initial Catalog=KBDEMO;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[7, 2] = "Data Source=pcberp01;Initial Catalog=KDO;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[7, 3] = "Data Source=pcberp01;Initial Catalog=KDO;User ID=reportAdmin;Password=reportAdmin#";
-                    DBConnectionString[7, 4] = "Data Source=pcberp01;Initial Catalog=KDO;User ID=reportAdmin;Password=reportAdmin#";
-                    #endregion
                 }
-                //#region 18测试环境
-                //DBConnectionString[18, 1] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F1-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //DBConnectionString[18, 2] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F2-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //DBConnectionString[18, 3] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F3-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //DBConnectionString[18, 4] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F4-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //DBConnectionString[18, 5] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F5-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //DBConnectionString[18, 6] = @"Data Source=[pcbdevelop02\sqlserver];Initial Catalog=F6-TEST;User ID=reportAdmin;Password=reportAdmin#";
-                //#endregion
+
             }
             catch (Exception e1)
             {
@@ -381,7 +278,9 @@ select '用户'             as Category,
                 System.Environment.Exit(0);
             }
         }
+        
         #endregion
+
 
         #region 数据库连接信息 ConnectionString
         /// <summary>
@@ -424,38 +323,23 @@ select '用户'             as Category,
                 tb.Columns.Add("value");
 
                 row = tb.NewRow();
-                row["text"] = "富山厂";
+                row["text"] = "珠海凯邦";
                 row["value"] = "1";
                 tb.Rows.Add(row);
 
                 row = tb.NewRow();
-                row["text"] = "多层厂";
+                row["text"] = "郑州凯邦";
                 row["value"] = "8";
                 tb.Rows.Add(row);
 
                 row = tb.NewRow();
-                row["text"] = "越亚厂";
+                row["text"] = "重庆凯邦";
                 row["value"] = "3";
                 tb.Rows.Add(row);
 
                 row = tb.NewRow();
-                row["text"] = "速能厂";
+                row["text"] = "合肥凯邦";
                 row["value"] = "4";
-                tb.Rows.Add(row);
-
-                row = tb.NewRow();
-                row["text"] = "重庆厂";
-                row["value"] = "5";
-                tb.Rows.Add(row);
-
-                row = tb.NewRow();
-                row["text"] = "高密厂";
-                row["value"] = "6";
-                tb.Rows.Add(row);
-
-                row = tb.NewRow();
-                row["text"] = "外包厂";
-                row["value"] = "7";
                 tb.Rows.Add(row);
 
                 return tb;
@@ -617,7 +501,7 @@ select '用户'             as Category,
             }
             #endregion
 
-            #region FOUNDERPCB_LOGIN_LOG
+            #region GREEKB_LOGIN_LOG
             private static Decimal LogRkey = 0;
             /// <summary>
             /// LogRkey
@@ -653,7 +537,7 @@ select '用户'             as Category,
             }
             #endregion
 
-            #region FOUNDERPCB_USER
+            #region GREEKB_USER
             private static Decimal userrkey = 0;
             /// <summary>
             /// UserRkey
@@ -704,7 +588,7 @@ select '用户'             as Category,
                 DataTable tb;
                 string s_SQL;
 
-                s_SQL = "select * from FOUNDERPCB_SYSTEM_PARA with (nolock) where PARA_ID = 3";
+                s_SQL = "select * from GREEKB_SYSTEM_PARA with (nolock) where PARA_ID = 3";
                 tb = DB.GetDataSet(s_SQL);
                 if (tb.Rows.Count > 0)
                 {
@@ -754,19 +638,16 @@ select '用户'             as Category,
             switch (ID)
             {
                 case 1:
-                    Code = "F3";
+                    Code = "ZH";
                     break;
                 case 8:
-                    Code = "F1";
+                    Code = "ZZ";
                     break;
                 case 4:
-                    Code = "F2";
+                    Code = "CQ";
                     break;
                 case 5:
-                    Code = "F6";
-                    break;
-                case 6:
-                    Code = "F5";
+                    Code = "HF";
                     break;
             }
 
@@ -784,20 +665,18 @@ select '用户'             as Category,
             switch (ID)
             {
                 case 1:
-                    Code = "珠海方正科技高密电子有限公司";
+                    Code = "珠海凯邦电机制造有限公司";
                     break;
                 case 8:
-                    Code = "珠海方正科技多层电路板有限公司";
+                    Code = "郑州凯邦电机制造有限公司";
                     break;
                 case 4:
-                    Code = "杭州方正速能科技有限公司";
+                    Code = "重庆凯邦电机制造有限公司";
                     break;
                 case 5:
-                    Code = "重庆方正高密电子有限公司";
+                    Code = "合肥凯邦电机制造有限公司";
                     break;
-                case 6:
-                    Code = "珠海方正科技高密电子有限公司";
-                    break;
+ 
             }
 
             return Code;

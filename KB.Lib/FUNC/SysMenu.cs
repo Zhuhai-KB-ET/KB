@@ -2043,15 +2043,15 @@ namespace KB.FUNC
                 #region 处理数据库
                 string[] s_temp = new string[10];
 
-                FOUNDERPCB_USER InfoUser = new FOUNDERPCB_USER();
-                FOUNDERPCB_LOGIN_LOG InfoLog = new FOUNDERPCB_LOGIN_LOG();
+                GREEKB_USER InfoUser = new GREEKB_USER();
+                GREEKB_LOGIN_LOG InfoLog = new GREEKB_LOGIN_LOG();
                 DATA0073 InfoD73 = new DATA0073();
                 DATA0005 InfoD05 = new DATA0005();
 
                 DATA0005BLL BllD05 = new DATA0005BLL(db);
                 DATA0073BLL BllD73 = new DATA0073BLL(db);
-                FOUNDERPCB_LOGIN_LOGBLL BllLog = new FOUNDERPCB_LOGIN_LOGBLL(db);
-                FOUNDERPCB_USERBLL BllUser = new FOUNDERPCB_USERBLL(db);
+                GREEKB_LOGIN_LOGBLL BllLog = new GREEKB_LOGIN_LOGBLL(db);
+                GREEKB_USERBLL BllUser = new GREEKB_USERBLL(db);
 
                 #region 获取帐号
                 try
@@ -2234,7 +2234,7 @@ select *
             {
 
                 FOUNDERPCB_LOGIN_LOGBLL BllLog = new FOUNDERPCB_LOGIN_LOGBLL(db);
-                FOUNDERPCB_LOGIN_LOG InfoLog = new FOUNDERPCB_LOGIN_LOG();
+                GREEKB_LOGIN_LOG InfoLog = new GREEKB_LOGIN_LOG();
                 InfoLog = BllLog.getFOUNDERPCB_LOGIN_LOGByRKEY(GlobalVal.UserInfo.LOGRKEY);
                 if (InfoLog.RKEY > 0)
                 {
@@ -2373,13 +2373,13 @@ select *
             try
             {
                 DBHelper db = new DBHelper(0);
-                FOUNDERPCB_LOGIN_LOG info = new FOUNDERPCB_LOGIN_LOG();
-                FOUNDERPCB_USER infoUser = new FOUNDERPCB_USER();
-                FOUNDERPCB_USERBLL bllUser = new FOUNDERPCB_USERBLL(db);
+                GREEKB_LOGIN_LOG info = new GREEKB_LOGIN_LOG();
+                GREEKB_USER infoUser = new GREEKB_USER();
+                GREEKB_USERBLL bllUser = new GREEKB_USERBLL(db);
                 FOUNDERPCB_LOGIN_LOGBLL bll = new FOUNDERPCB_LOGIN_LOGBLL(db);
 
                 try { infoUser = bllUser.FindBySql("LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + "'")[0]; }
-                catch { infoUser = new FOUNDERPCB_USER(); }
+                catch { infoUser = new GREEKB_USER(); }
 
                 info.RKEY = 0;
                 info.LOGIN_ID = GlobalVal.UserInfo.LoginName.Trim();
@@ -2407,13 +2407,13 @@ select *
             try
             {
                 DBHelper db = new DBHelper(0);
-                FOUNDERPCB_LOGIN_LOG info = new FOUNDERPCB_LOGIN_LOG();
-                FOUNDERPCB_USER infoUser = new FOUNDERPCB_USER();
-                FOUNDERPCB_USERBLL bllUser = new FOUNDERPCB_USERBLL(db);
+                GREEKB_LOGIN_LOG info = new GREEKB_LOGIN_LOG();
+                GREEKB_USER infoUser = new GREEKB_USER();
+                GREEKB_USERBLL bllUser = new GREEKB_USERBLL(db);
                 FOUNDERPCB_LOGIN_LOGBLL bll = new FOUNDERPCB_LOGIN_LOGBLL(db);
 
                 try { infoUser = bllUser.FindBySql("LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + "'")[0]; }
-                catch { infoUser = new FOUNDERPCB_USER(); }
+                catch { infoUser = new GREEKB_USER(); }
 
                 try
                 {

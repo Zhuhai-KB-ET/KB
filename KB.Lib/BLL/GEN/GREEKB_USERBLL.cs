@@ -1,8 +1,8 @@
 ﻿//============================================================
-// 项目名称:	    方正集团 PCB事业部 ERP系统
+// 项目名称:	    格力凯邦   ERP系统
 // 版本号: 		 v1.0
-// CopyRight@ 2010,方正集团 All Rights Reserved 版权所有
-// 编写日期: 	2010/9/27 16:05:06
+// CopyRight@ 2018,格力凯邦 All Rights Reserved 版权所有
+// 编写日期: 	2018/11/20 16:05:06
 //============================================================
 
 using System;
@@ -16,54 +16,54 @@ using KB.DAL;
 namespace KB.BLL
 {
     /// <summary>
-    /// 业务层  FOUNDERPCB_USERBLL
+    /// 业务层  GREEKB_USERBLL
     /// </summary>
-    public partial class FOUNDERPCB_USERBLL
+    public partial class GREEKB_USERBLL
     {	
-		FOUNDERPCB_USERDAL founderpcb_userDal=null;
+		GREEKB_USERDAL founderpcb_userDal=null;
 		
 		#region ----------构造函数---------- 
 		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="frm">窗口</param> 
-		public FOUNDERPCB_USERBLL(Form frm)
+		public GREEKB_USERBLL(Form frm)
 		{
-			 founderpcb_userDal=new FOUNDERPCB_USERDAL(frm); 
+			 founderpcb_userDal=new GREEKB_USERDAL(frm); 
 		}
 		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="frm">窗口</param> 
 		/// <param name="factoryID">操作厂别</param>
-		public FOUNDERPCB_USERBLL(Form frm, int factoryID)
+		public GREEKB_USERBLL(Form frm, int factoryID)
 		{
-			 founderpcb_userDal=new FOUNDERPCB_USERDAL(frm, factoryID); 
+			 founderpcb_userDal=new GREEKB_USERDAL(frm, factoryID); 
 		}
 		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="Thread">数据库连接指针，0是保留，最大99</param>
 		/// <param name="factoryID">操作厂别</param>
-		public FOUNDERPCB_USERBLL(int Thread, int factoryID)
+		public GREEKB_USERBLL(int Thread, int factoryID)
 		{
-			 founderpcb_userDal=new FOUNDERPCB_USERDAL(Thread, factoryID); 
+			 founderpcb_userDal=new GREEKB_USERDAL(Thread, factoryID); 
 		}
 		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="Thread">数据库连接指针，0是保留，最大99</param> 
-		public FOUNDERPCB_USERBLL(int Thread)
+		public GREEKB_USERBLL(int Thread)
 		{
-			 founderpcb_userDal=new FOUNDERPCB_USERDAL(Thread); 
+			 founderpcb_userDal=new GREEKB_USERDAL(Thread); 
 		} 
 		/// <summary>
 		/// 构造函数
 		/// </summary>
 		/// <param name="DB">DBHelper的实例</param> 
-		public FOUNDERPCB_USERBLL(DBHelper DB)
+		public GREEKB_USERBLL(DBHelper DB)
 		{
-			 founderpcb_userDal=new FOUNDERPCB_USERDAL(DB); 
+			 founderpcb_userDal=new GREEKB_USERDAL(DB); 
 		}		
 		#endregion
 
@@ -77,7 +77,7 @@ namespace KB.BLL
 		/// </summary>
 		/// <param name="FOUNDERPCB_USER">founderpcb_user对象</param>
 		/// <returns>新插入记录的编号</returns>
-		public  int Add(FOUNDERPCB_USER founderpcb_user)
+		public  int Add(GREEKB_USER founderpcb_user)
 		{
 			// Validate input
 			if (founderpcb_user == null)
@@ -85,7 +85,7 @@ namespace KB.BLL
 			
 			return founderpcb_userDal.Add(founderpcb_user);
 		} 
-		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_USER founderpcb_user)
+		public int Add(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_USER founderpcb_user)
 		{
 			// Validate input
 			if (founderpcb_user == null)
@@ -101,7 +101,7 @@ namespace KB.BLL
 		/// </summary>
 		/// <param name="oFOUNDERPCB_USERInfo">FOUNDERPCB_USER</param>
 		/// <returns>影响的行数</returns>
-		public int Update(FOUNDERPCB_USER founderpcb_user)
+		public int Update(GREEKB_USER founderpcb_user)
 		{
             // Validate input
 			if (founderpcb_user==null)
@@ -109,7 +109,7 @@ namespace KB.BLL
 			
 			return founderpcb_userDal.Update(founderpcb_user);
 		} 
-		public void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, FOUNDERPCB_USER founderpcb_user)
+		public void Update(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, GREEKB_USER founderpcb_user)
 		{
 			// Validate input
 			if (founderpcb_user==null)
@@ -133,7 +133,7 @@ namespace KB.BLL
 
 			return founderpcb_userDal.DeleteByRKEY(rKEY);
 		} 
-		public  int Delete(FOUNDERPCB_USER founderpcb_user)
+		public  int Delete(GREEKB_USER founderpcb_user)
 		{
 			// Validate input
 			if (founderpcb_user==null)
@@ -159,7 +159,7 @@ namespace KB.BLL
 		/// </summary>
 		/// <param name="rKEY">rKEY</param>
 		/// <returns>founderpcb_user 数据实体</returns>
-		public FOUNDERPCB_USER getFOUNDERPCB_USERByRKEY(decimal rKEY)
+		public GREEKB_USER getFOUNDERPCB_USERByRKEY(decimal rKEY)
 		{
 			// Validate input
 			if(rKEY<0)
@@ -173,7 +173,7 @@ namespace KB.BLL
 		/// 得到数据表FOUNDERPCB_USER所有记录
 		/// </summary>
 		/// <returns>实体集</returns>
-		public IList< FOUNDERPCB_USER>FindAllFOUNDERPCB_USER()
+		public IList< GREEKB_USER>FindAllFOUNDERPCB_USER()
 		{
 			// Use the dal to get all records 
 			
@@ -182,7 +182,7 @@ namespace KB.BLL
 		///<summary>
 		///
 		///</summary> 
-		public IList< FOUNDERPCB_USER> FindBySql(string sqlWhere)
+		public IList< GREEKB_USER> FindBySql(string sqlWhere)
 		{ 
 			return founderpcb_userDal.FindBySql(sqlWhere);
 		}
