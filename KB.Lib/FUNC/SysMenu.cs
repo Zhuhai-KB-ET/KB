@@ -2233,9 +2233,9 @@ select *
             try
             {
 
-                FOUNDERPCB_LOGIN_LOGBLL BllLog = new FOUNDERPCB_LOGIN_LOGBLL(db);
+                GREEKB_LOGIN_LOGBLL BllLog = new GREEKB_LOGIN_LOGBLL(db);
                 GREEKB_LOGIN_LOG InfoLog = new GREEKB_LOGIN_LOG();
-                InfoLog = BllLog.getFOUNDERPCB_LOGIN_LOGByRKEY(GlobalVal.UserInfo.LOGRKEY);
+                InfoLog = BllLog.getGREEKB_LOGIN_LOGByRKEY(GlobalVal.UserInfo.LOGRKEY);
                 if (InfoLog.RKEY > 0)
                 {
                     InfoLog.LOGIN_OUT = DateTime.Now;
@@ -2376,7 +2376,7 @@ select *
                 GREEKB_LOGIN_LOG info = new GREEKB_LOGIN_LOG();
                 GREEKB_USER infoUser = new GREEKB_USER();
                 GREEKB_USERBLL bllUser = new GREEKB_USERBLL(db);
-                FOUNDERPCB_LOGIN_LOGBLL bll = new FOUNDERPCB_LOGIN_LOGBLL(db);
+                GREEKB_LOGIN_LOGBLL bll = new GREEKB_LOGIN_LOGBLL(db);
 
                 try { infoUser = bllUser.FindBySql("LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + "'")[0]; }
                 catch { infoUser = new GREEKB_USER(); }
@@ -2410,7 +2410,7 @@ select *
                 GREEKB_LOGIN_LOG info = new GREEKB_LOGIN_LOG();
                 GREEKB_USER infoUser = new GREEKB_USER();
                 GREEKB_USERBLL bllUser = new GREEKB_USERBLL(db);
-                FOUNDERPCB_LOGIN_LOGBLL bll = new FOUNDERPCB_LOGIN_LOGBLL(db);
+                GREEKB_LOGIN_LOGBLL bll = new GREEKB_LOGIN_LOGBLL(db);
 
                 try { infoUser = bllUser.FindBySql("LOGIN_ID = '" + GlobalVal.UserInfo.LoginName.Trim() + "'")[0]; }
                 catch { infoUser = new GREEKB_USER(); }
